@@ -1,12 +1,14 @@
 package com.example.alqahtag.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -82,12 +84,14 @@ public class DispalyActivity extends AppCompatActivity {
             return false;
         }
     };
+//  to make it possible to collect data passed from MainActivity
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_dispaly);
+
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -106,6 +110,15 @@ public class DispalyActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        textView = (TextView) findViewById(R.id.fullscreen_content);
+        StringBuilder messageFromActivity1 = new StringBuilder();
+        Intent passInfo = getIntent();
+        Bundle bundle = passInfo.getExtras();
+        messageFromActivity1.append("Hello \n: " + passInfo.getStringExtra(MainActivity.KEY_NAME) + System.getProperty("line.separator"));
+        messageFromActivity1.append("Year of Birth: " + passInfo.getIntExtra(MainActivity.KEY_BIRTH, 0) + System.getProperty("line.separator"));
+        messageFromActivity1.append("Gender: " + passInfo.getStringExtra(MainActivity.KEY_GENDER) + System.getProperty("line.separator"));
+        messageFromActivity1.append("Email Notification: " + passInfo.getStringExtra(MainActivity.KEY_EMAIL) + System.getProperty("line.separator"));
+        textView.setText(messageFromActivity1);
     }
 
     @Override
