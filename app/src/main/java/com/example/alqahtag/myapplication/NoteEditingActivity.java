@@ -26,4 +26,6 @@ public class NoteEditingActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+
 }
