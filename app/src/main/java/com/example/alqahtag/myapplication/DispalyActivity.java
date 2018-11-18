@@ -84,6 +84,7 @@ public class DispalyActivity extends AppCompatActivity {
             return false;
         }
     };
+
 //  to make it possible to collect data passed from MainActivity
     private TextView textView;
 
@@ -119,6 +120,10 @@ public class DispalyActivity extends AppCompatActivity {
         messageFromActivity1.append("Gender: " + passInfo.getStringExtra(MainActivity.KEY_GENDER) + System.getProperty("line.separator"));
         messageFromActivity1.append("Email Notification: " + passInfo.getStringExtra(MainActivity.KEY_EMAIL) + System.getProperty("line.separator"));
         textView.setText(messageFromActivity1);
+    }
+
+    public void onReturnClick(View v){
+        finish();
     }
 
     @Override
@@ -173,4 +178,6 @@ public class DispalyActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+
 }
